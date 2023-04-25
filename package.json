@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@builder.io/mitosis": "^0.0.97",
+    "@builder.io/mitosis-cli": "^0.0.56"
+  },
+  "name": "compoentns",
+  "version": "0.5.0",
+  "main": "mitosis.config.js",
+  "devDependencies": {},
+  "scripts": {
+    "fmt": "npx prettier -w src",
+    "test": "",
+    "build": "mitosis build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

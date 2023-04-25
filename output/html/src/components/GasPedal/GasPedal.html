@@ -1,0 +1,74 @@
+<div data-el="div-1">
+  <button type="button" data-el="button-1">
+    <img alt="Gas Pedal" data-el="img-1" />
+  </button>
+</div>
+
+<style>
+  #gasPedal {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+<script>
+  (() => {
+    const state = {};
+    let props = {};
+    let context = null;
+    let nodesToDestroy = [];
+    let pendingUpdate = false;
+
+    function destroyAnyNodes() {
+      // destroy current view template refs before rendering again
+      nodesToDestroy.forEach((el) => el.remove());
+      nodesToDestroy = [];
+    }
+
+    // Function to update data bindings and loops
+    // call update() when you mutate state and need the updates to reflect
+    // in the dom
+    function update() {
+      if (pendingUpdate === true) {
+        return;
+      }
+      pendingUpdate = true;
+
+      document.querySelectorAll("[data-el='div-1']").forEach((el) => {
+        el.setAttribute("id", props.id);
+      });
+
+      document.querySelectorAll("[data-el='button-1']").forEach((el) => {
+        el.removeEventListener("touchstart", onButton1Touchstart);
+        el.addEventListener("touchstart", onButton1Touchstart);
+
+        el.removeEventListener("touchend", onButton1Touchend);
+        el.addEventListener("touchend", onButton1Touchend);
+      });
+
+      document.querySelectorAll("[data-el='img-1']").forEach((el) => {
+        el.setAttribute("src", props.img);
+      });
+
+      destroyAnyNodes();
+
+      pendingUpdate = false;
+    }
+
+    // Event handler for 'touchstart' event on button-1
+    function onButton1Touchstart(event) {
+      accelerate;
+    }
+
+    // Event handler for 'touchend' event on button-1
+    function onButton1Touchend(event) {
+      decelerate;
+    }
+
+    // Update with initial state on first load
+    update();
+  })();
+</script>
