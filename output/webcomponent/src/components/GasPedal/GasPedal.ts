@@ -13,12 +13,31 @@ class GasPedal extends HTMLElement {
     super();
     const self = this;
 
-    this.state = {};
+    this.state = {
+      a_timer: null,
+      b_timer: null,
+      decelerate() {
+        clearInterval(self.state.a_timer);
+        self.state.b_timer = setInterval(
+          self.props.handleB,
+          self.props.interval.b
+        );
+        self.update();
+      },
+      accelerate() {
+        clearInterval(self.state.b_timer);
+        self.state.a_timer = setInterval(
+          self.props.handleA,
+          self.props.interval.a
+        );
+        self.update();
+      },
+    };
     if (!this.props) {
       this.props = {};
     }
 
-    this.componentProps = ["id", "img"];
+    this.componentProps = ["handleB", "interval", "handleA", "id", "img"];
 
     // used to keep track of all nodes created by show/for
     this.nodesToDestroy = [];
@@ -27,12 +46,12 @@ class GasPedal extends HTMLElement {
 
     // Event handler for 'touchstart' event on button-gas-pedal-1
     this.onButtonGasPedal1Touchstart = (event) => {
-      accelerate;
+      this.state.accelerate();
     };
 
     // Event handler for 'touchend' event on button-gas-pedal-1
     this.onButtonGasPedal1Touchend = (event) => {
-      decelerate;
+      this.state.decelerate();
     };
 
     if (undefined) {

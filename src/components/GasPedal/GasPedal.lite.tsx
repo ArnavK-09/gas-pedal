@@ -27,23 +27,28 @@ export default function GasPedal(props: GasPedalProps) {
         user-select: none;
   }`);
 
-  // intervals
-  let a_timer, b_timer;
-
-  // functions
-  const accelerate = () => {
-    clearInterval(b_timer);
-    a_timer = setInterval(props.handleA, props.interval.a);
-  };
-  const decelerate = () => {
-    clearInterval(a_timer);
-    b_timer = setInterval(props.handleB, props.interval.b);
-  };
+  // state
+  const state = useStore({
+    a_timer: null,
+    b_timer: null,
+    decelerate() {
+      clearInterval(state.a_timer);
+      state.b_timer = setInterval(props.handleB, props.interval.b);
+    },
+    accelerate() {
+      clearInterval(state.b_timer);
+      state.a_timer = setInterval(props.handleA, props.interval.a);
+    },
+  });
 
   return (
     <>
       <div id={props.id}>
-        <button onTouchStart={accelerate} onTouchEnd={decelerate} type="button">
+        <button
+          onTouchStart={() => state.accelerate()}
+          onTouchEnd={() => state.decelerate()}
+          type="button"
+        >
           <img alt="Gas Pedal" src={props.img} />
         </button>
       </div>

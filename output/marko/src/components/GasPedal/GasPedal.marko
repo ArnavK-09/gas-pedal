@@ -1,4 +1,17 @@
-class {}
+class {
+  decelerate() {
+    clearInterval(this.state.a_timer);
+    this.state.b_timer = setInterval(this.input.handleB, this.input.interval.b);
+  }
+  accelerate() {
+    clearInterval(this.state.b_timer);
+    this.state.a_timer = setInterval(this.input.handleA, this.input.interval.a);
+  }
+
+  onCreate(input) {
+    this.state = { a_timer: null, b_timer: null };
+  }
+}
 
 style { 
   #gasPedal {
@@ -13,8 +26,8 @@ style {
 <div id=(input.id)>
   <button
     type="button"
-    on-touch-start=(event => accelerate)
-    on-touch-end=(event => decelerate)
+    on-touch-start=(event => component.accelerate())
+    on-touch-end=(event => component.decelerate())
   >
     <img alt="Gas Pedal" src=(input.img) />
   </button>

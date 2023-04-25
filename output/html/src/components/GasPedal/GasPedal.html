@@ -16,7 +16,20 @@
 </style>
 <script>
   (() => {
-    const state = {};
+    const state = {
+      a_timer: null,
+      b_timer: null,
+      decelerate() {
+        clearInterval(state.a_timer);
+        state.b_timer = setInterval(props.handleB, props.interval.b);
+        update();
+      },
+      accelerate() {
+        clearInterval(state.b_timer);
+        state.a_timer = setInterval(props.handleA, props.interval.a);
+        update();
+      },
+    };
     let props = {};
     let context = null;
     let nodesToDestroy = [];
@@ -60,12 +73,12 @@
 
     // Event handler for 'touchstart' event on button-1
     function onButton1Touchstart(event) {
-      accelerate;
+      state.accelerate();
     }
 
     // Event handler for 'touchend' event on button-1
     function onButton1Touchend(event) {
-      decelerate;
+      state.decelerate();
     }
 
     // Update with initial state on first load
