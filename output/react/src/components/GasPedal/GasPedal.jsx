@@ -19,15 +19,15 @@ function GasPedal(props) {
   return (
     <>
       <>
-        <div id={props.id}>
-          <button
-            type="button"
-            onTouchStart={(event) => accelerate()}
-            onTouchEnd={(event) => decelerate()}
-          >
-            <img alt="Gas Pedal" src={props.img} />
-          </button>
-        </div>
+        <button
+          type="button"
+          id={props.id}
+          style={props.css}
+          onTouchStart={(event) => accelerate()}
+          onTouchEnd={(event) => decelerate()}
+        >
+          <img alt="Gas Pedal" src={props.img} />
+        </button>
       </>
       <style jsx>{`
         #gasPedal {
@@ -37,6 +37,14 @@ function GasPedal(props) {
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          font: inherit;
+          padding: 0;
+          text-align: inherit;
+          text-decoration: none;
         }
       `}</style>
     </>
@@ -49,6 +57,7 @@ GasPedal.defaultProps = {
     a: 200,
     b: 100,
   },
+  css: "",
   img: "https://png.pngtree.com/png-vector/20190625/ourmid/pngtree-car-pedals-png-image_1511732.jpg",
   handleA: () => console.log("Accelerating"),
   handleB: () => console.log("Deaccelerating"),

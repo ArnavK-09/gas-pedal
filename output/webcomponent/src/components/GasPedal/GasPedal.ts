@@ -37,7 +37,14 @@ class GasPedal extends HTMLElement {
       this.props = {};
     }
 
-    this.componentProps = ["handleB", "interval", "handleA", "id", "img"];
+    this.componentProps = [
+      "handleB",
+      "interval",
+      "handleA",
+      "id",
+      "css",
+      "img",
+    ];
 
     // used to keep track of all nodes created by show/for
     this.nodesToDestroy = [];
@@ -80,11 +87,9 @@ class GasPedal extends HTMLElement {
     });
 
     this._root.innerHTML = `
-      <div data-el="div-gas-pedal-1">
-        <button type="button" data-el="button-gas-pedal-1">
-          <img alt="Gas Pedal" data-el="img-gas-pedal-1" />
-        </button>
-      </div>
+      <button type="button" data-el="button-gas-pedal-1">
+        <img alt="Gas Pedal" data-el="img-gas-pedal-1" />
+      </button>
       
       <style>
         #gasPedal {
@@ -94,6 +99,14 @@ class GasPedal extends HTMLElement {
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          font: inherit;
+          padding: 0;
+          text-align: inherit;
+          text-decoration: none;
         }
       </style>`;
     this.pendingUpdate = true;
@@ -125,13 +138,11 @@ class GasPedal extends HTMLElement {
   }
 
   updateBindings() {
-    this._root.querySelectorAll("[data-el='div-gas-pedal-1']").forEach((el) => {
-      el.setAttribute("id", this.props.id);
-    });
-
     this._root
       .querySelectorAll("[data-el='button-gas-pedal-1']")
       .forEach((el) => {
+        el.setAttribute("id", this.props.id);
+        Object.assign(el.style, this.props.css);
         el.removeEventListener("touchstart", this.onButtonGasPedal1Touchstart);
         el.addEventListener("touchstart", this.onButtonGasPedal1Touchstart);
         el.removeEventListener("touchend", this.onButtonGasPedal1Touchend);

@@ -1,9 +1,13 @@
 <template>
-  <div :id="id">
-    <button type="button" @touchstart="accelerate()" @touchend="decelerate()">
-      <img alt="Gas Pedal" :src="img" />
-    </button>
-  </div>
+  <button
+    type="button"
+    :id="id"
+    :style="css"
+    @touchstart="accelerate()"
+    @touchend="decelerate()"
+  >
+    <img alt="Gas Pedal" :src="img" />
+  </button>
 </template>
 
 <script>
@@ -22,6 +26,7 @@ export default defineComponent({
     },
     handleA: { default: () => console.log("Accelerating") },
     id: { default: "gasPedal" },
+    css: { default: "" },
     img: {
       default:
         "https://png.pngtree.com/png-vector/20190625/ourmid/pngtree-car-pedals-png-image_1511732.jpg",
@@ -53,5 +58,13 @@ export default defineComponent({
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: inherit;
+  text-decoration: none;
 }
 </style>

@@ -1,9 +1,7 @@
 <div>
-  <div id="{{id}}">
-    <button type="button">
-      <img alt="Gas Pedal" src="{{img}}" />
-    </button>
-  </div>
+  <button type="button" id="{{id}}" style="{{css}}">
+    <img alt="Gas Pedal" src="{{img}}" />
+  </button>
 </div>
 <style>
   #gasPedal {
@@ -13,5 +11,13 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: none;
   }
 </style>

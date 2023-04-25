@@ -1,8 +1,6 @@
-<div data-el="div-1">
-  <button type="button" data-el="button-1">
-    <img alt="Gas Pedal" data-el="img-1" />
-  </button>
-</div>
+<button type="button" data-el="button-1">
+  <img alt="Gas Pedal" data-el="img-1" />
+</button>
 
 <style>
   #gasPedal {
@@ -12,6 +10,14 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: none;
   }
 </style>
 <script>
@@ -50,11 +56,10 @@
       }
       pendingUpdate = true;
 
-      document.querySelectorAll("[data-el='div-1']").forEach((el) => {
-        el.setAttribute("id", props.id);
-      });
-
       document.querySelectorAll("[data-el='button-1']").forEach((el) => {
+        el.setAttribute("id", props.id);
+
+        Object.assign(el.style, props.css);
         el.removeEventListener("touchstart", onButton1Touchstart);
         el.addEventListener("touchstart", onButton1Touchstart);
 

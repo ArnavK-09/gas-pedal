@@ -21,15 +21,15 @@ export const GasPedal = component$((props) => {
 
   return (
     <Fragment>
-      <div id={props.id}>
-        <button
-          type="button"
-          onTouchStart$={(event) => accelerate(props, state)}
-          onTouchEnd$={(event) => decelerate(props, state)}
-        >
-          <img alt="Gas Pedal" src={props.img} />
-        </button>
-      </div>
+      <button
+        type="button"
+        id={props.id}
+        style={props.css}
+        onTouchStart$={(event) => accelerate(props, state)}
+        onTouchEnd$={(event) => decelerate(props, state)}
+      >
+        <img alt="Gas Pedal" src={props.img} />
+      </button>
     </Fragment>
   );
 });
@@ -44,5 +44,13 @@ export const STYLES = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: inherit;
+  text-decoration: none;
 }
 `;

@@ -21,14 +21,22 @@ style {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: none;
   }
 }
-<div id=(input.id)>
-  <button
-    type="button"
-    on-touch-start=(event => component.accelerate())
-    on-touch-end=(event => component.decelerate())
-  >
-    <img alt="Gas Pedal" src=(input.img) />
-  </button>
-</div>
+<button
+  type="button"
+  id=(input.id)
+  style=(input.css)
+  on-touch-start=(event => component.accelerate())
+  on-touch-end=(event => component.decelerate())
+>
+  <img alt="Gas Pedal" src=(input.img) />
+</button>
